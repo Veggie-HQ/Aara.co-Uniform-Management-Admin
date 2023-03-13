@@ -67,6 +67,7 @@ const Index = ({ isOpen, onClose }) => {
                 placeholder="Email"
                 type="email"
                 mb={2}
+                color="black"
                 onChange={onChange}
                 fontSize="10pt"
                 _placeholder={{ color: "gray.500" }}
@@ -89,6 +90,7 @@ const Index = ({ isOpen, onClose }) => {
                 placeholder="Password"
                 type="password"
                 onChange={onChange}
+                color="black"
                 fontSize="10pt"
                 mb={2}
                 _placeholder={{ color: "gray.500" }}
