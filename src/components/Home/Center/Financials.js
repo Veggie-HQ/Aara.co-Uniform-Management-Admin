@@ -13,8 +13,8 @@ const Financials = () => {
 
   return (
     <Flex width="100%" mt={2}>
-      <Flex width="80%"></Flex>
-      <Flex width="20%" p={1} direction="column">
+      <Flex width="70%"></Flex>
+      <Flex width="30%" p={1} direction="column">
         <Flex justify="space-between">
           <Text fontSize="10pt">Taxable Amount:</Text>
           <Flex align="center">
