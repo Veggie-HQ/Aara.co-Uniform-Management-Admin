@@ -74,7 +74,7 @@ const Left = () => {
         >
           <form onSubmit={orderFetcher}>
             <Text align="center" mb={3} fontWeight={800}>
-              Search for an Order
+              Search for a Pending Order
             </Text>
 
             <InputGroup>

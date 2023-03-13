@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { useStateContext } from "@/lib/context";
 import { doc, runTransaction } from "firebase/firestore";
 import { firestore } from "@/firebase/clientApp";
+import Invoice from "./Invoice";
+import { jsPDF } from "jspdf";
 
 const ControlButtons = () => {
   const { balance, orderToConfirm } = useStateContext();
@@ -90,39 +92,65 @@ const ControlButtons = () => {
     setLoading(false);
   }
 
+  const invoiceDownloader = () => {
+    let element = document.getElementById("contents");
+
+    let doc = new jsPDF();
+    doc.html(element, {
+      callback: function (doc) {
+        doc.save(`INVOICE #${INV}.pdf`);
+      },
+      margin: [2.5, 0, 0, 10],
+      autoPaging: "text",
+      x: 0,
+      y: 0,
+      width: 175,
+      windowWidth: 1000,
+    });
+  };
+
   return (
-    <Flex
-      mt={3}
-      width="100%"
-      border="1px solid yellow"
-      p={1}
-      align="center"
-      justify="center"
-    >
-      <Button
-        size="sm"
-        color="black"
-        borderRadius="7pt"
-        bg="orange.300"
-        isLoading={loading}
-        isDisabled={!download}
-        onClick={() => PushOrderToDB(orderToConfirm.order)}
-        _hover={{ bg: "orange.100" }}
+    <>
+      <Flex
+        mt={3}
+        width="100%"
+        border="1px solid yellow"
+        p={1}
+        align="center"
+        justify="center"
       >
-        {confirmed ? "Confirmed" : "Confirm Order"}
-      </Button>
-      <Button
-        size="sm"
-        color="black"
-        borderRadius="7pt"
-        bg="blue.300"
-        _hover={{ bg: "blue.100" }}
-        ml={2}
-        isDisabled={download}
-      >
-        Download Invoice
-      </Button>
-    </Flex>
+        <Button
+          size="sm"
+          color="black"
+          borderRadius="7pt"
+          bg="orange.300"
+          isLoading={loading}
+          isDisabled={!download}
+          onClick={() => PushOrderToDB(orderToConfirm.order)}
+          _hover={{ bg: "orange.100" }}
+        >
+          {confirmed ? "Confirmed" : "Confirm Order"}
+        </Button>
+        <Button
+          size="sm"
+          color="black"
+          borderRadius="7pt"
+          bg="blue.300"
+          _hover={{ bg: "blue.100" }}
+          onClick={() => invoiceDownloader()}
+          ml={2}
+          isDisabled={download}
+        >
+          Download Invoice
+        </Button>
+      </Flex>
+
+      <div className="useless">
+        <div id="contents">
+          <Invoice INV={INV} />
+        </div>
+      </div>
+    </>
   );
 };
 
