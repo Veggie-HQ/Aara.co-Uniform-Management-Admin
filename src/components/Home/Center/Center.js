@@ -1,63 +1,70 @@
-import React from "react";
 import { useStateContext } from "@/lib/context";
 import {
+  Divider,
   Flex,
-  Text,
+  Image,
   Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
   TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
 } from "@chakra-ui/react";
+import Financials from "./Financials";
 
 const Center = () => {
   const { orderToConfirm } = useStateContext();
-  console.log("IN CENTER", orderToConfirm);
 
   return (
-    <Flex
-      width="100%"
-      border="1px solid blue"
-      p={1}
-      justify="center"
-      align="center"
-    >
+    <Flex width="100%" p={1} justify="center" align="center" direction="column">
       {Object.keys(orderToConfirm).length > 0 ? (
         <>
-          <TableContainer width="100%">
+          <Text fontSize="15pt" fontWeight={800} mb={2}>
+            Order Details
+          </Text>
+          <Divider />
+          <TableContainer width="100%" mt={2}>
             <Table variant="simple">
               <Thead>
                 <Tr>
-                  <Th>Item</Th>
-                  <Th>Size</Th>
-                  <Th isNumeric>Quantity</Th>
-                  <Th isNumeric>Rate</Th>
-                  <Th isNumeric>Amount</Th>
+                  <Th color="white">Image</Th>
+                  <Th color="white">Item</Th>
+                  <Th color="white">Size</Th>
+                  <Th color="white" isNumeric>
+                    Quantity
+                  </Th>
+                  <Th color="white" isNumeric>
+                    Rate
+                  </Th>
+                  <Th color="white" isNumeric>
+                    Amount
+                  </Th>
                 </Tr>
               </Thead>
               <Tbody>
-                <Tr>
-                  <Td>inches</Td>
-                  <Td>millimetres (mm)</Td>
-                  <Td isNumeric>25.4</Td>
-                </Tr>
-                <Tr>
-                  <Td>feet</Td>
-                  <Td>centimetres (cm)</Td>
-                  <Td isNumeric>30.48</Td>
-                </Tr>
-                <Tr>
-                  <Td>yards</Td>
-                  <Td>metres (m)</Td>
-                  <Td isNumeric>0.91444</Td>
-                </Tr>
+                {orderToConfirm.order.cartItems.map((item, index) => (
+                  <Tr key={index}>
+                    <Td>
+                      <Image
+                        src={item.imageURL}
+                        width="30px"
+                        alt={item.title}
+                      />
+                    </Td>
+                    <Td>{item.title}</Td>
+                    <Td>{item.size}</Td>
+                    <Td isNumeric>{item.quantity}</Td>
+                    <Td isNumeric>{item.price}</Td>
+                    <Td isNumeric>{item.price * item.quantity}</Td>
+                  </Tr>
+                ))}
               </Tbody>
             </Table>
           </TableContainer>
+
+          <Financials />
         </>
       ) : (
         <>

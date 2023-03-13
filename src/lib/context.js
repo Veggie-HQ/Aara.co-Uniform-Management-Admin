@@ -4,6 +4,7 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
   const [orderToConfirm, setOrderToConfirm] = useState({});
+  const [balance, setBalance] = useState(0);
 
   const confirmationHandler = (order) => {
     setOrderToConfirm((prev) => ({
@@ -12,11 +13,17 @@ export const StateContext = ({ children }) => {
     }));
   };
 
+  const handleBalance = (bal) => {
+    setBalance(bal);
+  };
+
   return (
     <Context.Provider
       value={{
         orderToConfirm,
         confirmationHandler,
+        handleBalance,
+        balance,
       }}
     >
       {children}
