@@ -67,14 +67,26 @@ const Nav = () => {
                 </Text>
               </Link>
 
-              <Flex direction="column">
+              <Flex direction="column" align="center">
                 <Flex>
                   <Text>Hi!</Text>
                   <Text fontWeight={800} ml={1}>
                     {user?.displayName || user?.email?.split("@")[0]}
                   </Text>
                 </Flex>
-                <Button onClick={() => logout()}>Sign Out</Button>
+                <Button
+                  borderRadius="7pt"
+                  fontSize="10pt"
+                  fontWeight={700}
+                  color="black"
+                  bg="orange.300"
+                  _hover={{
+                    bg: "orange.100",
+                  }}
+                  onClick={() => logout()}
+                >
+                  Sign Out
+                </Button>
               </Flex>
             </Flex>
           </>
@@ -82,7 +94,19 @@ const Nav = () => {
         {!user && (
           <>
             <Auth isOpen={isOpen} onClose={onClose} />
-            <Button onClick={() => onOpen()}>Login</Button>
+            <Button
+              borderRadius="7pt"
+              fontSize="10pt"
+              fontWeight={700}
+              color="black"
+              bg="orange.300"
+              _hover={{
+                bg: "orange.100",
+              }}
+              onClick={() => onOpen()}
+            >
+              Login
+            </Button>
           </>
         )}
       </Flex>

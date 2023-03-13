@@ -1,6 +1,6 @@
-// import type { ComponentStyleConfig } from "@chakra-ui/theme";
+// import { ComponentStyleConfig } from "@chakra-ui/theme";
 
-// export const Button: ComponentStyleConfig = {
+// export const Button = (ComponentStyleConfig = {
 //   baseStyle: {
 //     borderRadius: "7pt",
 //     fontSize: "10pt",
@@ -47,4 +47,4 @@
 //       },
 //     },
 //   },
-// };
+// });

@@ -106,12 +106,20 @@ const Index = ({ isOpen, onClose }) => {
                 bg="gray.50"
               />
               <Button
+                borderRadius="7pt"
+                fontSize="10pt"
+                fontWeight={700}
                 width="100%"
                 type="submit"
                 height="36px"
                 mt={2}
                 mb={2}
                 isLoading={loading}
+                color="black"
+                bg="orange.300"
+                _hover={{
+                  bg: "orange.100",
+                }}
               >
                 Log In
               </Button>
