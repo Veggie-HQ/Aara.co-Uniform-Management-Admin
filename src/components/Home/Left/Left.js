@@ -83,10 +83,12 @@ const Left = () => {
                 value={number}
                 placeholder="Enter Parent's Mobile #"
                 _placeholder={{ fontSize: "10pt" }}
+                borderRadius="7pt"
               />
               <InputRightElement>
                 <Button
-                  borderRadius="7pt"
+                  height="100%"
+                  borderRadius="0 7pt 7pt 0"
                   fontSize="10pt"
                   fontWeight={700}
                   color="black"

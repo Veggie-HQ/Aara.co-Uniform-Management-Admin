@@ -41,7 +41,7 @@ const Right = () => {
     if (error) setError("");
     try {
       const orderQuery = query(
-        collection(firestore, "clientOrders"),
+        collection(firestore, "confirmedOrders"),
         where("parentInfo", "==", number)
       );
       const orderDocs = await getDocs(orderQuery);
@@ -63,7 +63,13 @@ const Right = () => {
 
   return (
     <>
-      <Flex borderRadius="7pt" width="100%" p={1} direction="column">
+      <Flex
+        borderRadius="7pt"
+        width="100%"
+        p={1}
+        direction="column"
+        // overflow="hidden"
+      >
         <Flex
           width="100%"
           direction="column"
@@ -83,10 +89,12 @@ const Right = () => {
                 value={number}
                 placeholder="Enter Parent's Mobile #"
                 _placeholder={{ fontSize: "10pt" }}
+                borderRadius="7pt"
               />
               <InputRightElement>
                 <Button
-                  borderRadius="7pt"
+                  height="100%"
+                  borderRadius="0 7pt 7pt 0"
                   fontSize="10pt"
                   fontWeight={700}
                   color="black"
@@ -116,6 +124,7 @@ const Right = () => {
           width="100%"
           align="center"
           justify="center"
+          overflow="hidden"
         >
           {Object.keys(ORDERS).length > 0 ? (
             <>

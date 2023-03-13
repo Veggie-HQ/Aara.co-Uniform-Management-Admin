@@ -1,5 +1,5 @@
 import { Button, Flex } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useStateContext } from "@/lib/context";
 import { doc, runTransaction } from "firebase/firestore";
 import { firestore } from "@/firebase/clientApp";
@@ -111,14 +111,7 @@ const ControlButtons = () => {
 
   return (
     <>
-      <Flex
-        mt={3}
-        width="100%"
-        border="1px solid yellow"
-        p={1}
-        align="center"
-        justify="center"
-      >
+      <Flex mt={3} width="100%" p={1} align="center" justify="center">
         <Button
           size="sm"
           color="black"

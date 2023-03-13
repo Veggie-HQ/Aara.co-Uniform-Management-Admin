@@ -11,15 +11,35 @@ import {
   Th,
   Thead,
   Tr,
+  Checkbox,
+  CheckboxGroup,
+  Box,
 } from "@chakra-ui/react";
 import Financials from "./Financials";
 import ControlButtons from "./ControlButtons";
+import { useState, useEffect } from "react";
 
 const Center = () => {
   const { orderToConfirm } = useStateContext();
+  const [confirm, setConfirm] = useState(false);
+
+  useEffect(() => {
+    setConfirm(false);
+  }, [orderToConfirm]);
+
+  const onChange = (e) => {
+    setConfirm(e.target.checked);
+  };
 
   return (
-    <Flex width="100%" p={1} justify="center" align="center" direction="column">
+    <Flex
+      width="100%"
+      p={1}
+      // justify="center"
+      align="center"
+      direction="column"
+      height="100%"
+    >
       {Object.keys(orderToConfirm).length > 0 ? (
         <>
           <Text fontSize="15pt" fontWeight={800} mb={2}>
@@ -67,7 +87,10 @@ const Center = () => {
 
           <Financials />
 
-          <ControlButtons />
+          <Checkbox onChange={onChange} isChecked={confirm}>
+            Confirm Order?
+          </Checkbox>
+          {confirm && <ControlButtons confirm={confirm} />}
         </>
       ) : (
         <>
