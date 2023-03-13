@@ -13,6 +13,7 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import Financials from "./Financials";
+import ControlButtons from "./ControlButtons";
 
 const Center = () => {
   const { orderToConfirm } = useStateContext();
@@ -65,6 +66,8 @@ const Center = () => {
           </TableContainer>
 
           <Financials />
+
+          <ControlButtons />
         </>
       ) : (
         <>
