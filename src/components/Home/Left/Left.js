@@ -61,8 +61,6 @@ const Left = () => {
     setLoading(false);
   };
 
-  console.log("ORDERS: ", ORDERS);
-
   return (
     <>
       <Flex borderRadius="7pt" width="100%" p={1} direction="column">
@@ -142,14 +140,8 @@ const Left = () => {
               )}
             </>
           ) : (
-            <Text
-              align="center"
-              mt={1}
-              fontWeight={800}
-              fontSize="10pt"
-              color="red.500"
-            >
-              Enter a valid number
+            <Text align="center" mt={1} fontWeight={800} fontSize="10pt">
+              Enter a number to start searching
             </Text>
           )}
         </Flex>

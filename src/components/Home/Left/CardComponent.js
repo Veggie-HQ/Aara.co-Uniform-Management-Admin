@@ -11,8 +11,11 @@ import {
   Flex,
   Button,
 } from "@chakra-ui/react";
+import { useStateContext } from "@/lib/context";
 
 const CardComponent = ({ data }) => {
+  const { confirmationHandler } = useStateContext();
+
   return (
     <Card mb={2} width="100%">
       <CardHeader>
@@ -73,7 +76,7 @@ const CardComponent = ({ data }) => {
 
           <Button
             onClick={() => {
-              console.log(data);
+              confirmationHandler(data);
             }}
           >
             Select Order
