@@ -82,34 +82,46 @@ const Right = () => {
             <Text align="center" mb={3} fontWeight={800}>
               Search for a Confirmed Order
             </Text>
-
-            <InputGroup>
-              <Input
-                onChange={onChange}
-                value={number}
-                placeholder="Enter Parent's Mobile #"
-                _placeholder={{ fontSize: "10pt" }}
-                borderRadius="7pt"
-              />
-              <InputRightElement>
-                <Button
-                  height="100%"
-                  borderRadius="0 7pt 7pt 0"
-                  fontSize="10pt"
-                  fontWeight={700}
-                  color="black"
-                  bg="orange.300"
-                  _hover={{
-                    bg: "orange.100",
-                  }}
-                  type="submit"
-                  isLoading={loading}
-                  size="sm"
-                >
-                  <AiOutlineSearch color="red.500" />
-                </Button>
-              </InputRightElement>
-            </InputGroup>
+            <Flex align="center">
+              <InputGroup>
+                <Input
+                  onChange={onChange}
+                  value={number}
+                  placeholder="Enter Parent's Mobile #"
+                  _placeholder={{ fontSize: "10pt" }}
+                  borderRadius="7pt"
+                />
+                <InputRightElement>
+                  <Button
+                    height="100%"
+                    borderRadius="0 7pt 7pt 0"
+                    fontSize="10pt"
+                    fontWeight={700}
+                    color="black"
+                    bg="orange.300"
+                    _hover={{
+                      bg: "orange.100",
+                    }}
+                    type="submit"
+                    isLoading={loading}
+                    size="sm"
+                  >
+                    <AiOutlineSearch color="red.500" />
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <Text
+                cursor="pointer"
+                ml={3}
+                color="blue.500"
+                onClick={() => {
+                  setNumber("+91");
+                  setOrders([]);
+                }}
+              >
+                clear
+              </Text>
+            </Flex>
 
             <Text mt={1} fontWeight={800} fontSize="10pt" color="red.500">
               {error}

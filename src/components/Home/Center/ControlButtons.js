@@ -122,7 +122,7 @@ const ControlButtons = () => {
           onClick={() => PushOrderToDB(orderToConfirm.order)}
           _hover={{ bg: "orange.100" }}
         >
-          {confirmed ? "Confirmed" : "Confirm Order"}
+          {confirmed ? "Order Placed" : "Place Order"}
         </Button>
         <Button
           size="sm"
