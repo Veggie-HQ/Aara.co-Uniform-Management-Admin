@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-     "@chakra-ui/react": "^2.5.1",
+    "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/inter": "^4.5.15",
@@ -24,6 +24,7 @@
     "react-firebase-hooks": "^5.1.1",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.8.0",
+    "recharts": "^2.5.0",
     "recoil": "^0.7.7",
     "styled-components": "^5.3.8"
   }
