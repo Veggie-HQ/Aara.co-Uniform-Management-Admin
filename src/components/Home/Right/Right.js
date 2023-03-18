@@ -1,22 +1,15 @@
 import { firestore } from "@/firebase/clientApp";
 import {
-  Box,
   Button,
-  Card,
-  CardBody,
-  CardHeader,
+  Divider,
   Flex,
-  Heading,
   Input,
   InputGroup,
   InputRightElement,
-  Stack,
-  StackDivider,
   Text,
-  Divider,
 } from "@chakra-ui/react";
-import { query, collection, where, getDocs } from "firebase/firestore";
-import React, { useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import CardComponent from "./CardComponent";
 

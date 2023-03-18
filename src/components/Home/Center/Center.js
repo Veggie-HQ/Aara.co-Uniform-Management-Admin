@@ -1,5 +1,6 @@
 import { useStateContext } from "@/lib/context";
 import {
+  Checkbox,
   Divider,
   Flex,
   Image,
@@ -11,13 +12,10 @@ import {
   Th,
   Thead,
   Tr,
-  Checkbox,
-  CheckboxGroup,
-  Box,
 } from "@chakra-ui/react";
-import Financials from "./Financials";
+import { useEffect, useState } from "react";
 import ControlButtons from "./ControlButtons";
-import { useState, useEffect } from "react";
+import Financials from "./Financials";
 
 const Center = () => {
   const { orderToConfirm } = useStateContext();
