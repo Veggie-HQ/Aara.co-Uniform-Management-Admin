@@ -71,14 +71,6 @@ const Index = ({ isOpen, onClose, item }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const ItemDetails = {
-      slug: textInputs.slug,
-      title: textInputs.title,
-      price: textInputs.price,
-      grades: grades,
-      gender: gender,
-      size: sizes,
-    };
     if (error) setError("");
     setLoading(true);
     try {
