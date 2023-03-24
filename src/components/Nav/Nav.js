@@ -48,6 +48,7 @@ const Nav = () => {
               <Link href="/">
                 <Text
                   cursor="pointer"
+                  _hover={{ color: "orange.500" }}
                   fontSize="10pt"
                   fontWeight={500}
                   color={pathName === "/" ? "orange.500" : "black"}
@@ -59,6 +60,7 @@ const Nav = () => {
               <Link href="/stats">
                 <Text
                   cursor="pointer"
+                  _hover={{ color: "orange.500" }}
                   fontSize="10pt"
                   fontWeight={500}
                   color={pathName.slice(1) === "stats" ? "orange.500" : "black"}
@@ -70,6 +72,7 @@ const Nav = () => {
               <Link href="/inventory">
                 <Text
                   cursor="pointer"
+                  _hover={{ color: "orange.500" }}
                   fontSize="10pt"
                   fontWeight={500}
                   color={
