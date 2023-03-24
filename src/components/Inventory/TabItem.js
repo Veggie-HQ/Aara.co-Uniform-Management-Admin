@@ -1,9 +1,6 @@
 import React from "react";
 import { Flex, Icon, Text } from "@chakra-ui/react";
 
-// size="sm"
-// bg="#27201A"
-
 const TabItem = ({ item, selected, setSelectedTab }) => {
   return (
     <Flex
