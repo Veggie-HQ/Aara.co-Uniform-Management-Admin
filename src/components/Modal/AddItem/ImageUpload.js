@@ -51,7 +51,7 @@ const ImageUpload = ({
           <input
             id="file-upload"
             type="file"
-            accept="image/x-png,image/gif,image/jpeg"
+            accept="image/x-png,image/gif,image/*"
             hidden
             ref={selectFileRef}
             onChange={onSelectImage}

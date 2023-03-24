@@ -1,5 +1,4 @@
-import { auth, firestore, storage } from "@/firebase/clientApp";
-import { FIREBASE_ERRORS } from "@/firebase/errors";
+import { firestore } from "@/firebase/clientApp";
 import {
   Button,
   Flex,
@@ -12,16 +11,9 @@ import {
   ModalOverlay,
   Text,
 } from "@chakra-ui/react";
-import React, { useState, useRef } from "react";
+import { doc, writeBatch } from "firebase/firestore";
+import { useRef, useState } from "react";
 import ImageUpload from "../AddItem/ImageUpload";
-import {
-  addDoc,
-  collection,
-  updateDoc,
-  writeBatch,
-  doc,
-} from "firebase/firestore";
-import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const Index = ({ isOpen, onClose, item }) => {
   const [selectedFile, setSelectedFile] = useState(item.imageURL);
