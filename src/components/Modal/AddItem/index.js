@@ -27,6 +27,7 @@ const Index = ({ isOpen, onClose }) => {
   });
   const [gender, setGender] = useState([]);
   const [sizes, setSizes] = useState([]);
+  const [grades, setGrades] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -43,6 +44,10 @@ const Index = ({ isOpen, onClose }) => {
 
   const genderHandler = (e) => {
     setGender(e.target.value.split(","));
+  };
+
+  const gradeHandler = (e) => {
+    setGrades(e.target.value.split(","));
   };
 
   const onSelectImage = (event) => {
@@ -64,7 +69,7 @@ const Index = ({ isOpen, onClose }) => {
       slug: textInputs.slug,
       title: textInputs.title,
       price: textInputs.price,
-      //   imageURL: "",
+      grades: grades,
       gender: gender,
       size: sizes,
     };
@@ -214,7 +219,58 @@ const Index = ({ isOpen, onClose }) => {
                 />
               </Flex>
 
-              <Input
+              <Flex width="100%" align="center" justify="space-evenly">
+                <Input
+                  width="49%"
+                  required
+                  name="grades"
+                  placeholder="Enter Standards eg: LKG,UKG,1,2"
+                  type="number"
+                  mb={2}
+                  color="black"
+                  onChange={gradeHandler}
+                  fontSize="9pt"
+                  _placeholder={{ color: "gray.500" }}
+                  _hover={{
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  _focus={{
+                    outline: "none",
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  bg="gray.50"
+                />
+                <Input
+                  width="49%"
+                  required
+                  name="sizes"
+                  placeholder="Enter Sizes (Separate With Comma)"
+                  type="text"
+                  onChange={sizeHandler}
+                  color="black"
+                  fontSize="8pt"
+                  mb={2}
+                  _placeholder={{ color: "gray.500" }}
+                  _hover={{
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  _focus={{
+                    outline: "none",
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  bg="gray.50"
+                />
+              </Flex>
+
+              {/* <Input
                 required
                 name="sizes"
                 placeholder="Sizes Available (If many, Separate With Comma)"
@@ -236,7 +292,7 @@ const Index = ({ isOpen, onClose }) => {
                   borderColor: "blue.500",
                 }}
                 bg="gray.50"
-              />
+              /> */}
 
               <ImageUpload
                 selectedFile={selectedFile}
