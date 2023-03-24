@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { auth } from "@/firebase/clientApp";
-import {
-  Input,
-  Button,
-  Flex,
-  Text,
-  useDisclosure,
-  InputGroup,
-  InputRightElement,
-  Box,
-} from "@chakra-ui/react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import ItemCard from "@/components/Inventory/ItemCard";
+import Search from "@/components/Inventory/Search";
 import AddItem from "@/components/Modal/AddItem";
+import { auth, firestore } from "@/firebase/clientApp";
+import { Button, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import { collection, getDocs, query } from "firebase/firestore";
-import { firestore } from "@/firebase/clientApp";
-import { AiOutlineSearch } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Inventory = () => {
   const [user] = useAuthState(auth);
@@ -69,51 +59,7 @@ const Inventory = () => {
             </Button>
           </Flex>
 
-          <form>
-            <Flex>
-              <InputGroup>
-                <Input
-                  name="title"
-                  placeholder="Search for a Product"
-                  type="text"
-                  mb={2}
-                  color="black"
-                  // onChange={onChangeText}
-                  fontSize="10pt"
-                  _placeholder={{ color: "gray.500" }}
-                  _hover={{
-                    bg: "white",
-                    border: "1px solid",
-                    borderColor: "blue.500",
-                  }}
-                  _focus={{
-                    outline: "none",
-                    bg: "white",
-                    border: "1px solid",
-                    borderColor: "blue.500",
-                  }}
-                  bg="gray.50"
-                />
-                <InputRightElement>
-                  <Button
-                    height="100%"
-                    fontSize="10pt"
-                    fontWeight={700}
-                    color="black"
-                    bg="orange.300"
-                    _hover={{
-                      bg: "orange.100",
-                    }}
-                    // type="submit"
-                    // isLoading={loading}
-                    size="sm"
-                  >
-                    <AiOutlineSearch color="red.500" />
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-            </Flex>
-          </form>
+          <Search />
 
           <Flex direction="column" align="center" mt={5}>
             <Text fontWeight={800} fontSize="20pt">
