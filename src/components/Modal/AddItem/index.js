@@ -100,6 +100,7 @@ const Index = ({ isOpen, onClose }) => {
       setError(error.message);
     }
     setLoading(false);
+    setSelectedFile("");
     onClose();
   };
 
