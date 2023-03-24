@@ -36,7 +36,7 @@ const Nav = () => {
         align="center"
         justify="space-between"
       >
-        <Flex width="70%">
+        <Flex width="65%">
           <Link href="/">
             <Image src="/assets/logo.jpg" alt="Aara Logo" width="85px" />
           </Link>
@@ -44,12 +44,12 @@ const Nav = () => {
 
         {user && (
           <>
-            <Flex align="center" width="30%" justify="space-evenly">
+            <Flex align="center" width="35%" justify="space-evenly">
               <Link href="/">
                 <Text
                   cursor="pointer"
                   fontSize="10pt"
-                  fontWeight={900}
+                  fontWeight={500}
                   color={pathName === "/" ? "orange.500" : "black"}
                 >
                   Home
@@ -60,18 +60,31 @@ const Nav = () => {
                 <Text
                   cursor="pointer"
                   fontSize="10pt"
-                  fontWeight={900}
+                  fontWeight={500}
                   color={pathName.slice(1) === "stats" ? "orange.500" : "black"}
                 >
                   Stats
                 </Text>
               </Link>
 
+              <Link href="/inventory">
+                <Text
+                  cursor="pointer"
+                  fontSize="10pt"
+                  fontWeight={500}
+                  color={
+                    pathName.slice(1) === "inventory" ? "orange.500" : "black"
+                  }
+                >
+                  Inventory
+                </Text>
+              </Link>
+
               <Flex direction="column" align="center">
                 <Flex>
-                  <Text>Hi!</Text>
+                  <Text>Hi</Text>
                   <Text fontWeight={800} ml={1}>
-                    {user?.displayName || user?.email?.split("@")[0]}
+                    {user?.displayName || user?.email?.split("@")[0]}!
                   </Text>
                 </Flex>
                 <Button
