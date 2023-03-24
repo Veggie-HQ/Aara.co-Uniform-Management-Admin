@@ -13,7 +13,7 @@ const ItemCard = ({ item }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Flex color="black" bg="orange.300" width="100%" borderRadius="7pt" mt={2}>
+    <Flex color="black" bg="orange.200" width="100%" borderRadius="7pt" mt={2}>
       <Flex
         justify="space-evenly"
         align="center"
