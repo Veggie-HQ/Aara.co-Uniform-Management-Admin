@@ -13,20 +13,20 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useState, useRef } from "react";
-import ImageUpload from "./ImageUpload";
+// import ImageUpload from "./ImageUpload";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
-const Index = ({ isOpen, onClose }) => {
+const Index = ({ isOpen, onClose, item }) => {
   const [selectedFile, setSelectedFile] = useState("");
   const selectFileRef = useRef(null);
   const [textInputs, setTextInputs] = useState({
-    slug: "",
-    title: "",
-    price: 0,
+    slug: item.slug,
+    title: item.title,
+    price: item.price,
   });
-  const [gender, setGender] = useState([]);
-  const [sizes, setSizes] = useState([]);
+  const [gender, setGender] = useState(item.gender);
+  const [sizes, setSizes] = useState(item.size);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -95,7 +95,7 @@ const Index = ({ isOpen, onClose }) => {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size="xl">
+      <Modal isOpen={isOpen} onClose={onClose} size="xl" isCentered>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -106,7 +106,7 @@ const Index = ({ isOpen, onClose }) => {
               align="center"
               justify="center"
             >
-              <Text>Add a New Item</Text>
+              <Text>Edit Item Details</Text>
             </Flex>
           </ModalHeader>
           <ModalCloseButton color="black" />
@@ -114,6 +114,7 @@ const Index = ({ isOpen, onClose }) => {
             <form onSubmit={onSubmit}>
               <Flex width="100%" align="center" justify="space-evenly">
                 <Input
+                  value={textInputs.slug}
                   width="49%"
                   required
                   name="slug"
@@ -138,6 +139,7 @@ const Index = ({ isOpen, onClose }) => {
                   bg="gray.50"
                 />
                 <Input
+                  value={textInputs.title}
                   width="49%"
                   required
                   name="title"
@@ -165,6 +167,7 @@ const Index = ({ isOpen, onClose }) => {
 
               <Flex width="100%" align="center" justify="space-evenly">
                 <Input
+                  value={textInputs.price}
                   width="49%"
                   required
                   name="price"
@@ -189,6 +192,7 @@ const Index = ({ isOpen, onClose }) => {
                   bg="gray.50"
                 />
                 <Input
+                  value={gender.join(",")}
                   width="49%"
                   required
                   name="gender"
@@ -215,6 +219,7 @@ const Index = ({ isOpen, onClose }) => {
               </Flex>
 
               <Input
+                value={sizes.join(",")}
                 required
                 name="sizes"
                 placeholder="Sizes Available (If many, Separate With Comma)"
@@ -238,12 +243,12 @@ const Index = ({ isOpen, onClose }) => {
                 bg="gray.50"
               />
 
-              <ImageUpload
+              {/* <ImageUpload
                 selectedFile={selectedFile}
                 setSelectedFile={setSelectedFile}
                 selectFileRef={selectFileRef}
                 onSelectImage={onSelectImage}
-              />
+              /> */}
               {error && (
                 <Text
                   color="red.500"
@@ -256,6 +261,7 @@ const Index = ({ isOpen, onClose }) => {
                 </Text>
               )}
               <Button
+                isDisabled
                 borderRadius="7pt"
                 fontSize="10pt"
                 fontWeight={700}
@@ -271,7 +277,7 @@ const Index = ({ isOpen, onClose }) => {
                   bg: "orange.100",
                 }}
               >
-                Add Item
+                Confirm Changes
               </Button>
             </form>
           </ModalBody>
