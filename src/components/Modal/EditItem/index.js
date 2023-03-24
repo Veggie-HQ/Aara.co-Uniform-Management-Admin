@@ -13,12 +13,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useState, useRef } from "react";
-// import ImageUpload from "./ImageUpload";
+import ImageUpload from "../AddItem/ImageUpload";
 import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const Index = ({ isOpen, onClose, item }) => {
-  const [selectedFile, setSelectedFile] = useState("");
+  const [selectedFile, setSelectedFile] = useState(item.imageURL);
   const selectFileRef = useRef(null);
   const [textInputs, setTextInputs] = useState({
     slug: item.slug,
@@ -27,6 +27,7 @@ const Index = ({ isOpen, onClose, item }) => {
   });
   const [gender, setGender] = useState(item.gender);
   const [sizes, setSizes] = useState(item.size);
+  const [grades, setGrades] = useState(item.grades);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -39,6 +40,10 @@ const Index = ({ isOpen, onClose, item }) => {
 
   const sizeHandler = (e) => {
     setSizes(e.target.value.split(","));
+  };
+
+  const gradeHandler = (e) => {
+    setGrades(e.target.value.split(","));
   };
 
   const genderHandler = (e) => {
@@ -218,37 +223,65 @@ const Index = ({ isOpen, onClose, item }) => {
                 />
               </Flex>
 
-              <Input
-                value={sizes.join(",")}
-                required
-                name="sizes"
-                placeholder="Sizes Available (If many, Separate With Comma)"
-                type="text"
-                onChange={sizeHandler}
-                color="black"
-                fontSize="10pt"
-                mb={2}
-                _placeholder={{ color: "gray.500" }}
-                _hover={{
-                  bg: "white",
-                  border: "1px solid",
-                  borderColor: "blue.500",
-                }}
-                _focus={{
-                  outline: "none",
-                  bg: "white",
-                  border: "1px solid",
-                  borderColor: "blue.500",
-                }}
-                bg="gray.50"
-              />
+              <Flex width="100%" align="center" justify="space-evenly">
+                <Input
+                  width="49%"
+                  required
+                  value={grades.join(",")}
+                  name="grades"
+                  placeholder="Enter Standards eg: LKG,UKG,1,2"
+                  type="text"
+                  mb={2}
+                  color="black"
+                  onChange={gradeHandler}
+                  fontSize="9pt"
+                  _placeholder={{ color: "gray.500" }}
+                  _hover={{
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  _focus={{
+                    outline: "none",
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  bg="gray.50"
+                />
+                <Input
+                  width="49%"
+                  required
+                  value={sizes.join(",")}
+                  name="sizes"
+                  placeholder="Enter Sizes (Separate With Comma)"
+                  type="text"
+                  onChange={sizeHandler}
+                  color="black"
+                  fontSize="8pt"
+                  mb={2}
+                  _placeholder={{ color: "gray.500" }}
+                  _hover={{
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  _focus={{
+                    outline: "none",
+                    bg: "white",
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  bg="gray.50"
+                />
+              </Flex>
 
-              {/* <ImageUpload
+              <ImageUpload
                 selectedFile={selectedFile}
                 setSelectedFile={setSelectedFile}
                 selectFileRef={selectFileRef}
                 onSelectImage={onSelectImage}
-              /> */}
+              />
               {error && (
                 <Text
                   color="red.500"

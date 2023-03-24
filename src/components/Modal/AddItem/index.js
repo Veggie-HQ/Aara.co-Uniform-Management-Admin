@@ -225,7 +225,7 @@ const Index = ({ isOpen, onClose }) => {
                   required
                   name="grades"
                   placeholder="Enter Standards eg: LKG,UKG,1,2"
-                  type="number"
+                  type="text"
                   mb={2}
                   color="black"
                   onChange={gradeHandler}
@@ -269,30 +269,6 @@ const Index = ({ isOpen, onClose }) => {
                   bg="gray.50"
                 />
               </Flex>
-
-              {/* <Input
-                required
-                name="sizes"
-                placeholder="Sizes Available (If many, Separate With Comma)"
-                type="text"
-                onChange={sizeHandler}
-                color="black"
-                fontSize="10pt"
-                mb={2}
-                _placeholder={{ color: "gray.500" }}
-                _hover={{
-                  bg: "white",
-                  border: "1px solid",
-                  borderColor: "blue.500",
-                }}
-                _focus={{
-                  outline: "none",
-                  bg: "white",
-                  border: "1px solid",
-                  borderColor: "blue.500",
-                }}
-                bg="gray.50"
-              /> */}
 
               <ImageUpload
                 selectedFile={selectedFile}

@@ -65,6 +65,21 @@ const ItemCard = ({ item }) => {
               </Badge>
             ))}
           </Flex>
+          <Flex align="center">
+            <Text>Standards: </Text>
+            {item.grades.map((item, index) => (
+              <Badge
+                variant="subtle"
+                colorScheme="blue"
+                ml={1}
+                textTransform="uppercase"
+                fontWeight={600}
+                key={index}
+              >
+                {item}
+              </Badge>
+            ))}
+          </Flex>
         </Flex>
         <Flex align="center" justify="center" width="10%">
           <EditItem isOpen={isOpen} onClose={onClose} item={item} />
