@@ -41,7 +41,9 @@ const ItemCard = ({ item }) => {
             <Text>Gender: </Text>
             {item.gender.map((item, index) => (
               <Badge
-                colorScheme="green"
+                bg="#913175"
+                // colorScheme="green"
+                color="white"
                 ml={1}
                 textTransform="uppercase"
                 fontWeight={600}
@@ -55,7 +57,9 @@ const ItemCard = ({ item }) => {
             <Text>Sizes: </Text>
             {item.size.map((item, index) => (
               <Badge
-                colorScheme="purple"
+                bg="#4E31AA"
+                color="white"
+                // colorScheme="purple"
                 ml={1}
                 textTransform="uppercase"
                 fontWeight={600}
@@ -70,7 +74,8 @@ const ItemCard = ({ item }) => {
             {item.grades.map((item, index) => (
               <Badge
                 variant="subtle"
-                colorScheme="blue"
+                bg="#FE6244"
+                color="white"
                 ml={1}
                 textTransform="uppercase"
                 fontWeight={600}

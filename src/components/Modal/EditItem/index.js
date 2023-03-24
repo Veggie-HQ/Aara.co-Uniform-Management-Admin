@@ -14,7 +14,13 @@ import {
 } from "@chakra-ui/react";
 import React, { useState, useRef } from "react";
 import ImageUpload from "../AddItem/ImageUpload";
-import { addDoc, collection, updateDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  updateDoc,
+  writeBatch,
+  doc,
+} from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 
 const Index = ({ isOpen, onClose, item }) => {
@@ -69,27 +75,26 @@ const Index = ({ isOpen, onClose, item }) => {
       slug: textInputs.slug,
       title: textInputs.title,
       price: textInputs.price,
-      //   imageURL: "",
+      grades: grades,
       gender: gender,
       size: sizes,
     };
     if (error) setError("");
     setLoading(true);
     try {
-      const itemDocRef = await addDoc(
-        collection(firestore, "items"),
-        ItemDetails
-      );
-      //   Image processing
-      if (selectedFile) {
-        const imageRef = ref(storage, `items/${itemDocRef.id}/image`);
-        await uploadString(imageRef, selectedFile, "data_url");
-        const downloadURL = await getDownloadURL(imageRef);
+      const batch = writeBatch(firestore);
+      const itemRef = doc(firestore, "items", item.id);
+      const newItem = {
+        slug: textInputs.slug,
+        title: textInputs.title,
+        price: textInputs.price,
+        grades: grades,
+        gender: gender,
+        size: sizes,
+      };
+      batch.update(itemRef, newItem);
 
-        await updateDoc(itemDocRef, {
-          imageURL: downloadURL,
-        });
-      }
+      await batch.commit();
     } catch (error) {
       setError(error.message);
     }
@@ -294,7 +299,7 @@ const Index = ({ isOpen, onClose, item }) => {
                 </Text>
               )}
               <Button
-                isDisabled
+                // isDisabled
                 borderRadius="7pt"
                 fontSize="10pt"
                 fontWeight={700}
