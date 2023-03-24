@@ -59,11 +59,11 @@ const Search = () => {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <Flex width="100%" margin="0px auto">
+        <Flex width="100%" margin="10px auto">
           <InputGroup>
             <Input
               name="title"
-              placeholder="Search for a Product by Slug"
+              placeholder="Search for a Product"
               type="text"
               mb={2}
               color="black"
