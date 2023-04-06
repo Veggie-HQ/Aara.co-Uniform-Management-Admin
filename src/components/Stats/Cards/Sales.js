@@ -1,8 +1,7 @@
-import { Box, Card, CardBody, Flex, Icon, Text } from "@chakra-ui/react";
-import { FcSalesPerformance } from "react-icons/fc";
+import { Box, Card, CardBody, Flex, Image, Text, Icon } from "@chakra-ui/react";
 import { MdCurrencyRupee } from "react-icons/md";
 
-const InfoCard = () => {
+const OrderCount = () => {
   return (
     <Box width="31%" borderRadius="7pt">
       <Card color="white" bg="rgba(255, 255, 255, 0.2)">
@@ -21,9 +20,8 @@ const InfoCard = () => {
               align="center"
               justify="center"
               borderRadius="7pt"
-              bg="blue.800"
             >
-              <Icon as={FcSalesPerformance} width="80%" height="80%" />
+              <Image src="/assets/sales.png" alt="Sales" />
             </Flex>
           </Flex>
         </CardBody>
@@ -32,4 +30,4 @@ const InfoCard = () => {
   );
 };
 
-export default InfoCard;
+export default OrderCount;

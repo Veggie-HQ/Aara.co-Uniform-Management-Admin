@@ -2,8 +2,11 @@ import React from "react";
 import { auth } from "@/firebase/clientApp";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import InfoCard from "@/components/Stats/InfoCard";
-import BarChart from "@/components/Stats/BarChart";
+import OrderCount from "@/components/Stats/Cards/OrderCount";
+import ItemCount from "@/components/Stats/Cards/ItemCount";
+import Sales from "@/components/Stats/Cards/Sales";
+import SalesChart from "@/components/Stats/Charts/SalesChart";
+import ItemPieChart from "@/components/Stats/Charts/ItemPieChart";
 
 const Stats = () => {
   const [user] = useAuthState(auth);
@@ -13,17 +16,13 @@ const Stats = () => {
         <Box mt={5} p={5} border="1px solid red">
           <Text>Aara Admin Dashboard</Text>
           <Flex mt="5" align="center" justify="space-evenly">
-            <InfoCard />
-            <InfoCard />
-            <InfoCard />
+            <OrderCount />
+            <ItemCount />
+            <Sales />
           </Flex>
-          <Flex
-            mt="5"
-            align="center"
-            justify="space-evenly"
-            // border="1px solid green"
-          >
-            {/* <BarChart /> */}
+          <Flex mt="5" width="100%" align="center" justify="space-evenly">
+            <SalesChart />
+            <ItemPieChart />
           </Flex>
         </Box>
       ) : (
