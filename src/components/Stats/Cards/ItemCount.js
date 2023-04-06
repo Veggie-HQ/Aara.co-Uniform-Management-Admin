@@ -2,7 +2,7 @@ import { Box, Card, CardBody, Flex, Image, Text } from "@chakra-ui/react";
 
 const ItemCount = () => {
   return (
-    <Box width="31%" borderRadius="7pt">
+    <Box maxWidth="400px" width="31%" borderRadius="7pt">
       <Card color="white" bg="rgba(255, 255, 255, 0.2)">
         <CardBody>
           <Flex width="100%" p={2}>

@@ -3,7 +3,7 @@ import { MdCurrencyRupee } from "react-icons/md";
 
 const OrderCount = () => {
   return (
-    <Box width="31%" borderRadius="7pt">
+    <Box maxWidth="400px" width="30%" borderRadius="7pt">
       <Card color="white" bg="rgba(255, 255, 255, 0.2)">
         <CardBody>
           <Flex width="100%" p={2}>
