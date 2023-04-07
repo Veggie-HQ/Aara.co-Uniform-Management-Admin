@@ -22,7 +22,7 @@ const ControlButtons = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_1, {
+      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_3, {
         method: "POST",
         body: JSON.stringify(order_details),
         headers: {
@@ -32,7 +32,7 @@ const ControlButtons = () => {
       const data = await res.json();
       currKey = data["name"];
 
-      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_1);
+      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_3);
       const data1 = await res1.json().then((res) => {
         let x = Object.keys(res);
         for (let i = 0; i < x.length; i++) {
@@ -45,7 +45,7 @@ const ControlButtons = () => {
       });
 
       // CHANGE INVOICE NUMBER HERE
-      IN = 999 + currIndex;
+      IN = 494 + currIndex;
 
       let modDetails = {
         ...order_details,
@@ -53,7 +53,7 @@ const ControlButtons = () => {
         balance: order_details.total - balance,
       };
 
-      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_2, {
+      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_4, {
         method: "POST",
         body: JSON.stringify(modDetails),
         headers: {
