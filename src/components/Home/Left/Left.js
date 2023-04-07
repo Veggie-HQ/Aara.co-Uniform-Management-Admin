@@ -7,6 +7,7 @@ import {
   InputGroup,
   InputRightElement,
   Text,
+  InputLeftAddon,
 } from "@chakra-ui/react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useState } from "react";
@@ -14,7 +15,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import CardComponent from "./CardComponent";
 
 const Left = () => {
-  const [number, setNumber] = useState("+91");
+  const [number, setNumber] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [ORDERS, setOrders] = useState([]);
@@ -33,9 +34,10 @@ const Left = () => {
     setLoading(true);
     if (error) setError("");
     try {
+      const parentNumber = "+91" + number;
       const orderQuery = query(
         collection(firestore, "clientOrders"),
-        where("parentInfo", "==", number)
+        where("parentInfo", "==", parentNumber)
       );
       const orderDocs = await getDocs(orderQuery);
       const orderData = orderDocs.docs.flatMap((doc) => ({
@@ -72,6 +74,9 @@ const Left = () => {
 
             <Flex align="center">
               <InputGroup>
+                <InputLeftAddon bg="orange.300" color="black">
+                  +91
+                </InputLeftAddon>
                 <Input
                   onChange={onChange}
                   value={number}
