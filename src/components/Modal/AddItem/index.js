@@ -305,6 +305,25 @@ const Index = ({ isOpen, onClose }) => {
               >
                 Add Item
               </Button>
+              <Button
+                borderRadius="7pt"
+                fontSize="10pt"
+                fontWeight={700}
+                width="100%"
+                onClick={() => {
+                  onClose();
+                  setSelectedFile("");
+                }}
+                height="36px"
+                mb={2}
+                color="white"
+                bg="black"
+                _hover={{
+                  opacity: 0.5,
+                }}
+              >
+                Cancel
+              </Button>
             </form>
           </ModalBody>
         </ModalContent>

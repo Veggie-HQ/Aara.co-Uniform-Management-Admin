@@ -11,7 +11,7 @@ import {
   ModalOverlay,
   Text,
 } from "@chakra-ui/react";
-import { doc, writeBatch } from "firebase/firestore";
+import { doc, writeBatch, deleteDoc } from "firebase/firestore";
 import { useRef, useState } from "react";
 import ImageUpload from "../AddItem/ImageUpload";
 
@@ -59,6 +59,20 @@ const Index = ({ isOpen, onClose, item }) => {
         setSelectedFile(readerEvent.target.result);
       }
     };
+  };
+
+  const onDelete = async (e) => {
+    if (error) setError("");
+    setLoading(true);
+    try {
+      const itemRef = doc(firestore, "items", item.id);
+      await deleteDoc(itemRef);
+    } catch (error) {
+      setError(error.message);
+    }
+    setLoading(false);
+    setSelectedFile("");
+    onClose();
   };
 
   const onSubmit = async (e) => {
@@ -300,6 +314,23 @@ const Index = ({ isOpen, onClose, item }) => {
                 }}
               >
                 Confirm Changes
+              </Button>
+              <Button
+                borderRadius="7pt"
+                fontSize="10pt"
+                fontWeight={700}
+                width="100%"
+                onClick={() => onDelete()}
+                height="36px"
+                mb={2}
+                // isLoading={loading}
+                color="white"
+                bg="red"
+                _hover={{
+                  opacity: 0.5,
+                }}
+              >
+                Delete Item
               </Button>
             </form>
           </ModalBody>

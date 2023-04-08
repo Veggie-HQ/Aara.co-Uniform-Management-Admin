@@ -1,3 +1,4 @@
+import EditItem from "@/components/Modal/EditItem";
 import {
   Badge,
   Button,
@@ -6,12 +7,12 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
+import { useRef } from "react";
 import { MdCurrencyRupee } from "react-icons/md";
-import EditItem from "@/components/Modal/EditItem";
 
 const ItemCard = ({ item }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const cancelRef = useRef();
   return (
     <Flex color="black" bg="orange.200" width="100%" borderRadius="7pt" mt={2}>
       <Flex
@@ -25,7 +26,7 @@ const ItemCard = ({ item }) => {
         <Text fontSize="8pt">ID: #{item.slug}</Text>
       </Flex>
       <Flex p={2} width="80%" direction="row">
-        <Flex direction="column" width="90%">
+        <Flex direction="column" width="85%">
           <Flex align="center">
             <Text>Item Name: </Text>
             <Text ml={1} fontWeight={600}>
@@ -86,7 +87,7 @@ const ItemCard = ({ item }) => {
             ))}
           </Flex>
         </Flex>
-        <Flex align="center" justify="center" width="10%">
+        <Flex align="center" justify="center" width="15%" direction="column">
           <EditItem isOpen={isOpen} onClose={onClose} item={item} />
           <Button
             size="sm"
