@@ -113,7 +113,7 @@ const Right = () => {
                 ml={3}
                 color="blue.500"
                 onClick={() => {
-                  setNumber("+91");
+                  setNumber("");
                   setOrders([]);
                 }}
               >
