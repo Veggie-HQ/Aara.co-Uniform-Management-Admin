@@ -1,6 +1,8 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
+import { Box, Card, CardBody, Flex, Image, Text, Icon } from "@chakra-ui/react";
+import { firestore } from "@/firebase/clientApp";
+import { collection, getDocs } from "firebase/firestore";
 
 const data = [
   { name: "Group A", value: 400 },
@@ -84,6 +86,38 @@ const renderActiveShape = (props) => {
 
 const ItemPieChart = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    orderFetcher();
+  }, []);
+
+  const orderFetcher = async () => {
+    const orders = [];
+    try {
+      const querySnapshot = await getDocs(
+        collection(firestore, "confirmedOrders")
+      );
+      querySnapshot.forEach((doc) => {
+        orders.push(doc.data());
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    calculateCount(orders);
+  };
+
+  const calculateCount = (orders) => {
+    let itemData = [];
+    for (let i = 0; i < orders.length; i++) {
+      // console.log(orders[i]["cartItems"]);
+      itemData.push({
+        id: orders[i]["cartItems"].map((item) => (itemData["id"] = item.slug)),
+      });
+      // orders[i]["cartItems"].map((item) => (itemData["id"] = item.slug));
+    }
+    // setSales(total);
+    console.log(itemData);
+  };
 
   const onPieEnter = (_, index) => {
     setActiveIndex(index);

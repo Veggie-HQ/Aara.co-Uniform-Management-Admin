@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "@/firebase/clientApp";
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -8,14 +8,48 @@ import Sales from "@/components/Stats/Cards/Sales";
 import SalesChart from "@/components/Stats/Charts/SalesChart";
 import ItemPieChart from "@/components/Stats/Charts/ItemPieChart";
 import ItemBar from "@/components/Stats/Charts/ItemCharts/ItemBar";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { firestore } from "@/firebase/clientApp";
 
 const Stats = () => {
   const [user] = useAuthState(auth);
   const [loading, setLoading] = useState(false);
+  const [allOrders, setAllOrders] = useState([]);
+  const [orderCount, setTotalOrderCount] = useState(0);
 
   const onSubmit = (e) => {
     e.preventDefault();
   };
+
+  // useEffect(() => {
+  //   orderFetcher();
+  // }, []);
+
+  // const orderFetcher = async () => {
+  //   setLoading(true);
+  //   const orders = [];
+  //   try {
+  //     const querySnapshot = await getDocs(
+  //       collection(firestore, "confirmedOrders")
+  //     );
+  //     querySnapshot.forEach((doc) => {
+  //       orders.push(doc.data());
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   setAllOrders(orders);
+  //   totalOrders(orders);
+
+  //   setLoading(false);
+  // };
+
+  // const totalOrders = (data) => {
+  //   for (let i = 0; i < data.length; i++) {
+  //     console.log(data[i]);
+  //   }
+  // };
+
   return (
     <>
       {user ? (
