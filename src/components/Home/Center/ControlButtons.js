@@ -76,6 +76,7 @@ const ControlButtons = () => {
 
         transaction.set(commDocRef, {
           ...order_details,
+          confirmed: true,
           invoice_number: IN,
           balance: order_details.total - balance,
         });
