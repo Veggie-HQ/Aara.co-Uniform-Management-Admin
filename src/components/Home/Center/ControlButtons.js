@@ -20,7 +20,7 @@ const ControlButtons = () => {
 
   async function PushOrderToDB(order_details) {
     setLoading(true);
-
+    console.log(order_details);
     try {
       const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_3, {
         method: "POST",
@@ -81,6 +81,15 @@ const ControlButtons = () => {
           balance: order_details.total - balance,
         });
       });
+
+      // const batch = writeBatch(firestore);
+      // const itemRef = doc(firestore, "clientOrders", order_details.id);
+      // const newItem = {
+      //   confirmed: true,
+      // };
+      // batch.update(itemRef, newItem);
+
+      // await batch.commit();
 
       setConfirmed(true);
 
