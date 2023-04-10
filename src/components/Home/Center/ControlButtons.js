@@ -1,7 +1,7 @@
 import { Button, Flex } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useStateContext } from "@/lib/context";
-import { doc, runTransaction } from "firebase/firestore";
+import { doc, runTransaction, writeBatch } from "firebase/firestore";
 import { firestore } from "@/firebase/clientApp";
 import Invoice from "./Invoice";
 import { jsPDF } from "jspdf";
@@ -20,9 +20,8 @@ const ControlButtons = () => {
 
   async function PushOrderToDB(order_details) {
     setLoading(true);
-    console.log(order_details);
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_3, {
+      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_5, {
         method: "POST",
         body: JSON.stringify(order_details),
         headers: {
@@ -32,7 +31,7 @@ const ControlButtons = () => {
       const data = await res.json();
       currKey = data["name"];
 
-      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_3);
+      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_5);
       const data1 = await res1.json().then((res) => {
         let x = Object.keys(res);
         for (let i = 0; i < x.length; i++) {
@@ -53,7 +52,7 @@ const ControlButtons = () => {
         balance: order_details.total - balance,
       };
 
-      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_4, {
+      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_6, {
         method: "POST",
         body: JSON.stringify(modDetails),
         headers: {
@@ -76,20 +75,21 @@ const ControlButtons = () => {
 
         transaction.set(commDocRef, {
           ...order_details,
-          confirmed: true,
           invoice_number: IN,
           balance: order_details.total - balance,
         });
       });
 
-      // const batch = writeBatch(firestore);
-      // const itemRef = doc(firestore, "clientOrders", order_details.id);
-      // const newItem = {
-      //   confirmed: true,
-      // };
-      // batch.update(itemRef, newItem);
+      const batch = writeBatch(firestore);
+      const itemRef = doc(firestore, "clientOrders", order_details.id);
+      const newItem = {
+        confirmed: true,
+        invoice_number: IN,
+        balance: order_details.total - balance,
+      };
+      batch.update(itemRef, newItem);
 
-      // await batch.commit();
+      await batch.commit();
 
       setConfirmed(true);
 
