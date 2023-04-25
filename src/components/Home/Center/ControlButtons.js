@@ -44,7 +44,7 @@ const ControlButtons = () => {
       });
 
       // CHANGE INVOICE NUMBER HERE
-      IN = 494 + currIndex;
+      IN = 603 + currIndex;
 
       let modDetails = {
         ...order_details,
