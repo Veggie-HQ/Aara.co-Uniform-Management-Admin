@@ -21,7 +21,7 @@ const ControlButtons = () => {
   async function PushOrderToDB(order_details) {
     setLoading(true);
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_5, {
+      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_7, {
         method: "POST",
         body: JSON.stringify(order_details),
         headers: {
@@ -31,7 +31,7 @@ const ControlButtons = () => {
       const data = await res.json();
       currKey = data["name"];
 
-      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_5);
+      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_7);
       const data1 = await res1.json().then((res) => {
         let x = Object.keys(res);
         for (let i = 0; i < x.length; i++) {
@@ -52,7 +52,7 @@ const ControlButtons = () => {
         balance: order_details.total - balance,
       };
 
-      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_6, {
+      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_8, {
         method: "POST",
         body: JSON.stringify(modDetails),
         headers: {
