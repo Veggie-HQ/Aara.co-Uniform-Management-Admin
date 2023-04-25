@@ -58,14 +58,14 @@ const Stats = () => {
           <Flex mt="5" align="center" justify="space-evenly">
             <OrderCount />
             <ItemCount />
-            <Sales />
+            {/* <Sales /> */}
           </Flex>
-          <Flex mt="5" width="100%" align="center" justify="space-evenly" p={5}>
+          {/* <Flex mt="5" width="100%" align="center" justify="space-evenly" p={5}>
             <SalesChart />
             <ItemPieChart />
-          </Flex>
+          </Flex> */}
 
-          <Flex
+          {/* <Flex
             mt="5"
             width="100%"
             align="center"
@@ -88,13 +88,13 @@ const Stats = () => {
                 >
                   <option value="-1">Select Item to Display Count</option>
 
-                  {/* {students.map((item, index) => (
+                  {students.map((item, index) => (
                       <>
                         <option key={index} value={index}>
                           {item.name}
                         </option>
                       </>
-                    ))} */}
+                    ))} 
                 </select>
                 <Button
                   isLoading={loading}
@@ -109,7 +109,7 @@ const Stats = () => {
             </form>
 
             <ItemBar />
-          </Flex>
+          </Flex> */}
         </Box>
       ) : (
         <Flex mt={10} width="100%" align="center" justify="center">

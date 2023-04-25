@@ -42,7 +42,7 @@ const OrderCount = () => {
             <Flex width="70%" p={1} direction="column">
               <Flex fontWeight={900} align="center">
                 <Icon as={MdCurrencyRupee} height="15pt" width="15pt" />
-                {/* <Text fontSize="15pt">{totalSales}</Text> */}
+                <Text fontSize="15pt">{totalSales}</Text>
               </Flex>
               <Text color="gray.400">Total Sales</Text>
             </Flex>

@@ -35,7 +35,7 @@ const ItemCount = () => {
 
   return (
     <Box maxWidth="400px" width="31%" borderRadius="7pt">
-      <Card color="white" bg="rgba(255, 255, 255, 0.2)">
+      <Card color="white" bg="rgba(255, 255, 255, 0.2)" height="100pt">
         <CardBody>
           <Flex width="100%" p={2}>
             <Flex width="70%" p={1} direction="column">
