@@ -8,7 +8,6 @@ export const SidebarWrapper = styled(motion.div)`
   top: 0;
   height: 100vh;
   width: 100%;
-  z-index: 100;
   display: flex;
   justify-content: flex-end;
 `;
