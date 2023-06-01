@@ -22,7 +22,6 @@ const Nav = () => {
       bg="white"
       boxShadow="0px 10px 15px 10px rgb(0 0 0 / 15%)"
       backdropFilter="blur(8px)"
-      //   position="fixed"
       width="100%"
       zIndex={999}
       align="center"
@@ -36,7 +35,7 @@ const Nav = () => {
         align="center"
         justify="space-between"
       >
-        <Flex width="65%">
+        <Flex width="50%">
           <Link href="/">
             <Image src="/assets/logo.jpg" alt="Aara Logo" width="85px" />
           </Link>
@@ -44,7 +43,7 @@ const Nav = () => {
 
         {user && (
           <>
-            <Flex align="center" width="35%" justify="space-evenly">
+            <Flex align="center" width="50%" justify="space-evenly">
               <Link href="/">
                 <Text
                   cursor="pointer"
@@ -57,6 +56,20 @@ const Nav = () => {
                 </Text>
               </Link>
 
+              <Link href="/manualEntry">
+                <Text
+                  cursor="pointer"
+                  _hover={{ color: "orange.500" }}
+                  fontSize="10pt"
+                  fontWeight={500}
+                  color={
+                    pathName.slice(1) === "manualEntry" ? "orange.500" : "black"
+                  }
+                >
+                  Manual Entry
+                </Text>
+              </Link>
+
               <Link href="/stats">
                 <Text
                   cursor="pointer"
@@ -65,7 +78,7 @@ const Nav = () => {
                   fontWeight={500}
                   color={pathName.slice(1) === "stats" ? "orange.500" : "black"}
                 >
-                  Stats
+                  Statistics
                 </Text>
               </Link>
 

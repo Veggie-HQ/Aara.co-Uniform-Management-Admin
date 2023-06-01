@@ -5,14 +5,15 @@ import { doc, runTransaction, writeBatch } from "firebase/firestore";
 import { firestore } from "@/firebase/clientApp";
 import Invoice from "./Invoice";
 import { jsPDF } from "jspdf";
+import useNextInvoiceNumber from "@/hooks/nextInvoiceNumber";
 
 const ControlButtons = () => {
-  const { balance, orderToConfirm } = useStateContext();
-
+  const { balance, orderToConfirm, INV } = useStateContext();
+  const { invoiceFetcher } = useNextInvoiceNumber();
   const [confirmed, setConfirmed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [download, allowDownload] = useState(true);
-  const [INV, SetINV] = useState(0);
+  // const [INV, SetINV] = useState(0);
 
   let currKey = "";
   let currIndex;
@@ -21,7 +22,7 @@ const ControlButtons = () => {
   async function PushOrderToDB(order_details) {
     setLoading(true);
     try {
-      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_7, {
+      const res = await fetch(process.env.NEXT_PUBLIC_REALTIME_9, {
         method: "POST",
         body: JSON.stringify(order_details),
         headers: {
@@ -31,7 +32,7 @@ const ControlButtons = () => {
       const data = await res.json();
       currKey = data["name"];
 
-      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_7);
+      const res1 = await fetch(process.env.NEXT_PUBLIC_REALTIME_9);
       const data1 = await res1.json().then((res) => {
         let x = Object.keys(res);
         for (let i = 0; i < x.length; i++) {
@@ -52,7 +53,7 @@ const ControlButtons = () => {
         balance: order_details.total - balance,
       };
 
-      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_8, {
+      const res2 = await fetch(process.env.NEXT_PUBLIC_REALTIME_10, {
         method: "POST",
         body: JSON.stringify(modDetails),
         headers: {
@@ -60,12 +61,12 @@ const ControlButtons = () => {
         },
       });
       const data2 = await res2.json();
-      SetINV(IN);
+      // SetINV(IN);
 
       const commDocRef = doc(
         firestore,
         "confirmedOrders",
-        `#${IN}-${orderToConfirm.order.studentDetails.name}`
+        `#${INV}-${orderToConfirm.order.studentDetails.name}`
       );
       await runTransaction(firestore, async (transaction) => {
         const commDoc = await transaction.get(commDocRef);
@@ -75,7 +76,9 @@ const ControlButtons = () => {
 
         transaction.set(commDocRef, {
           ...order_details,
-          invoice_number: IN,
+          confirmed: true,
+          date: new Date(),
+          invoice_number: INV,
           balance: order_details.total - balance,
         });
       });
@@ -84,15 +87,15 @@ const ControlButtons = () => {
       const itemRef = doc(firestore, "clientOrders", order_details.id);
       const newItem = {
         confirmed: true,
-        invoice_number: IN,
+        invoice_number: INV,
         balance: order_details.total - balance,
       };
       batch.update(itemRef, newItem);
-
       await batch.commit();
 
-      setConfirmed(true);
+      invoiceFetcher();
 
+      setConfirmed(true);
       setTimeout(() => {
         allowDownload(false);
       }, 750);

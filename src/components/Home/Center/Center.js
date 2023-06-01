@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import ControlButtons from "./ControlButtons";
 import Financials from "./Financials";
+import Info from "./Info";
 
 const Center = () => {
   const { orderToConfirm } = useStateContext();
@@ -38,9 +39,10 @@ const Center = () => {
       direction="column"
       height="100%"
     >
+      <Info />
       {Object.keys(orderToConfirm).length > 0 ? (
         <>
-          <Text fontSize="15pt" fontWeight={800} mb={2}>
+          <Text fontSize="15pt" fontWeight={800} mb={2} mt={2}>
             Order Details
           </Text>
           <Divider />
