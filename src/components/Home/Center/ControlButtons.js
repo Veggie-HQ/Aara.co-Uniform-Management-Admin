@@ -111,7 +111,7 @@ const ControlButtons = () => {
     let doc = new jsPDF();
     doc.html(element, {
       callback: function (doc) {
-        doc.save(`INVOICE #${INV}.pdf`);
+        doc.save(`INVOICE #${INV - 1}.pdf`);
       },
       margin: [2.5, 0, 0, 10],
       autoPaging: "text",
@@ -153,7 +153,7 @@ const ControlButtons = () => {
 
       <div className="useless">
         <div id="contents">
-          <Invoice INV={INV} />
+          <Invoice INV={INV - 1} />
         </div>
       </div>
     </>

@@ -94,7 +94,13 @@ const Center = () => {
         </>
       ) : (
         <>
-          <Flex height="100%" width="100%" align="center" justify="center">
+          <Flex
+            mt="100px"
+            height="100%"
+            width="100%"
+            align="center"
+            justify="center"
+          >
             <Text fontWeight={800}>No order has been selected</Text>
           </Flex>
         </>

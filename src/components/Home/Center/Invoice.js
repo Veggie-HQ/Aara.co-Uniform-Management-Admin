@@ -18,7 +18,7 @@ const Invoice = ({ INV }) => {
 
           <div className="billto">
             <div className="left left_bill">
-              <p class="date bold">Invoice No.: {INV}</p>
+              <p className="date bold">Invoice No.: {INV}</p>
               <p className="bold">BILL TO</p>
 
               <p>{orderToConfirm.order.studentDetails.name}</p>
@@ -80,7 +80,7 @@ const Invoice = ({ INV }) => {
                 </div>
 
                 <div className="right taxes_right">
-                  <p class="row">
+                  <p className="row">
                     <img
                       src={"/assets/re.png"}
                       className="resymbol"
@@ -90,7 +90,7 @@ const Invoice = ({ INV }) => {
                     {orderToConfirm.order.subtotal}
                   </p>
 
-                  <p class="row">
+                  <p className="row">
                     <img
                       src={"/assets/re.png"}
                       className="resymbol"
@@ -100,7 +100,7 @@ const Invoice = ({ INV }) => {
 
                     {orderToConfirm.order.gst5Total / 2}
                   </p>
-                  <p class="row">
+                  <p className="row">
                     <img
                       src={"/assets/re.png"}
                       className="resymbol"
@@ -108,7 +108,7 @@ const Invoice = ({ INV }) => {
                     />
                     {orderToConfirm.order.gst5Total / 2}
                   </p>
-                  <p class="row">
+                  <p className="row">
                     <img
                       src={"/assets/re.png"}
                       className="resymbol"
@@ -116,7 +116,7 @@ const Invoice = ({ INV }) => {
                     />
                     {orderToConfirm.order.gst12Total / 2}
                   </p>
-                  <p class="row">
+                  <p className="row">
                     <img
                       src={"/assets/re.png"}
                       className="resymbol"
@@ -124,7 +124,7 @@ const Invoice = ({ INV }) => {
                     />
                     {orderToConfirm.order.gst12Total / 2}
                   </p>
-                  <p class="row">{orderToConfirm.order.roundOff}</p>
+                  <p className="row">{orderToConfirm.order.roundOff}</p>
                 </div>
               </div>
 
@@ -143,7 +143,7 @@ const Invoice = ({ INV }) => {
                   <p>Balance</p>
                 </div>
                 <div className="right">
-                  <p class="row">
+                  <p className="row">
                     <img
                       src={"/assets/re.png"}
                       className="resymbol"
@@ -151,7 +151,7 @@ const Invoice = ({ INV }) => {
                     />
                     {balance}
                   </p>
-                  <p class="row">
+                  <p className="row">
                     <img
                       src={"/assets/re.png"}
                       className="resymbol"

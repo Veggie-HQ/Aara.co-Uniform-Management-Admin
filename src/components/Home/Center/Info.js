@@ -31,6 +31,8 @@ const Info = () => {
     invoiceFetcher();
   }, []);
 
+  console.log("INVOICE NUMBER", INV);
+
   return (
     <Flex
       width="100%"

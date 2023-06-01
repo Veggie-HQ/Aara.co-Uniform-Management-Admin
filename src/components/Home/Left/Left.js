@@ -8,6 +8,7 @@ import {
   InputRightElement,
   Text,
   InputLeftAddon,
+  Box,
 } from "@chakra-ui/react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useState } from "react";
@@ -60,20 +61,19 @@ const Left = () => {
   return (
     <SidebarWrapper>
       <SidebarStyle>
-        <Flex
-          borderRadius="7pt"
-          width="100%"
-          p={1}
-          direction="column"
-          position="fixed"
-        >
+        <Flex borderRadius="7pt" width="100%" p={1} direction="column">
           <Flex
+            position={"fixed"}
+            ml={"-3px"}
+            bg="#313131"
+            zIndex={999}
             width="100%"
-            direction="row"
+            direction="column"
             align="center"
             justify="center"
             mb={3}
             p={1}
+            borderRadius="7pt"
           >
             <form onSubmit={orderFetcher}>
               <Text align="center" mb={3} fontWeight={800}>
@@ -129,7 +129,7 @@ const Left = () => {
               </Text>
             </form>
           </Flex>
-          <Divider />
+          <Divider mt="100px" />
           <Flex
             mt={3}
             direction="column"

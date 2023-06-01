@@ -61,20 +61,19 @@ const Right = () => {
   return (
     <SidebarWrapper>
       <SidebarStyle>
-        <Flex
-          borderRadius="7pt"
-          width="100%"
-          p={1}
-          direction="column"
-          // overflow="hidden"
-        >
+        <Flex borderRadius="7pt" width="100%" p={1} direction="column">
           <Flex
+            position={"fixed"}
+            ml={"-3px"}
+            bg="#313131"
+            zIndex={999}
             width="100%"
             direction="column"
             align="center"
             justify="center"
             mb={3}
             p={1}
+            borderRadius="7pt"
           >
             <form onSubmit={orderFetcher}>
               <Text align="center" mb={3} fontWeight={800}>
@@ -129,7 +128,7 @@ const Right = () => {
               </Text>
             </form>
           </Flex>
-          <Divider />
+          <Divider mt="100px" />
           <Flex
             mt={3}
             direction="column"
