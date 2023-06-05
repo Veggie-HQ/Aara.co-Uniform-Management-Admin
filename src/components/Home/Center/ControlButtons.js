@@ -49,6 +49,7 @@ const ControlButtons = () => {
       let modDetails = {
         ...order_details,
         invoice_number: IN,
+        date: new Date(),
         balance: order_details.total - balance,
       };
 
